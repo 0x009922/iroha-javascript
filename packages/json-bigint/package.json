@@ -1,0 +1,5 @@
+{
+  "name": "@iroha2/json-bigint",
+  "description": "Parses JSON as usual, but handles big numbers as BigInts",
+  "version": "0.1.0"
+}
