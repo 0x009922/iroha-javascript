@@ -5,8 +5,8 @@ import makeDir from 'make-dir'
 import del from 'del'
 import { $ } from 'zx'
 import consola from 'consola'
-import { Config, KnownBinaries } from './types'
-import config from './config'
+import { match } from 'ts-pattern'
+import { KnownBinaries } from './types'
 
 const TMP_DIR = path.resolve(__dirname, '../tmp')
 const TMP_CARGO_ROOT = path.resolve(TMP_DIR, 'cargo')
@@ -15,23 +15,23 @@ async function prepareTmpDir() {
   await makeDir(TMP_DIR)
 }
 
-function cargoInstallArgs(config: Pick<Config, 'git'>, binaryName: string): string[] {
+function cargoInstallArgs(binary: KnownBinaries): string[] {
+  const IROHA_DIR = path.resolve('../../../iroha')
+
   return [
     '--root',
     TMP_CARGO_ROOT,
-    '--git',
-    config.git.repo,
-    ...(config.git.branch ? ['--branch', config.git.branch] : []),
-    ...(config.git.revision ? ['--rev', config.git.revision] : []),
-    binaryName,
+    ...match(binary)
+      .with(KnownBinaries.Iroha, () => ['--path', path.join(IROHA_DIR, 'cli')])
+      .with(KnownBinaries.Kagami, () => ['--path', path.join(IROHA_DIR, 'tools/kagami')])
+      .exhaustive(),
   ]
 }
 
 export async function install(binary: KnownBinaries): Promise<void> {
   await prepareTmpDir()
-  const actualBinary = config.binaries[binary]
-  consola.info(`Installing binary with cargo: ${binary} (${actualBinary})`)
-  await $`cargo install ${cargoInstallArgs(config, actualBinary)}`
+  consola.info(`Installing binary with cargo: ${binary}`)
+  await $`cargo install ${cargoInstallArgs(binary)}`
 }
 
 /**
@@ -42,6 +42,12 @@ export async function clean() {
 }
 
 export async function resolveBinaryPath(binary: KnownBinaries): Promise<string> {
-  const { binaries: binaryNameMap } = config
-  return path.resolve(TMP_CARGO_ROOT, 'bin', binaryNameMap[binary])
+  return path.resolve(
+    TMP_CARGO_ROOT,
+    'bin',
+    match(binary)
+      .with(KnownBinaries.Iroha, () => 'iroha')
+      .with(KnownBinaries.Kagami, () => 'kagami')
+      .exhaustive(),
+  )
 }

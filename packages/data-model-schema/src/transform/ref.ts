@@ -45,6 +45,7 @@ function transformArray(ref: string): string {
  */
 function normalizeIdentifier(ref: string): string {
   const randCase = ref
+    .replace(/::trigger_executed::(\w+)$/, '::trigger_executed_$1')
     .replace(/::events::data::events::(\w+)/g, '::events_data_events::Data_$1')
     .replace(/::events::time::ExecutionTime/g, '::events::ExecutionTime')
     .replace(/::time::(\w+)/g, '::time_$1')

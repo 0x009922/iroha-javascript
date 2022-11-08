@@ -1,5 +1,12 @@
 # @iroha2/client
 
+## 4.1.0-dvp.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @iroha2/data-model@4.1.0-dvp.0
+
 ## 4.0.0
 
 ### Major Changes

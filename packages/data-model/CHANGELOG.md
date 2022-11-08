@@ -1,5 +1,11 @@
 # @iroha2/data-model
 
+## 4.1.0-dvp.0
+
+### Minor Changes
+
+- Recompile for `soramitsu/iroha2-dvp`, including `TriggerExecuted` event.
+
 ## 4.0.0
 
 ### Major Changes

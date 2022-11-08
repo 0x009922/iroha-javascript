@@ -57,6 +57,9 @@ describe('Refs transformation', () => {
 
     // New in RC4
     ['AtomicU32Wrapper', 'U32'],
+
+    ['iroha_data_model::events::trigger_executed::Event', 'TriggerExecutedEvent'],
+    ['iroha_data_model::events::trigger_executed::Status', 'TriggerExecutedStatus'],
   ])('%s transformed into %s', (input, output) => {
     expect(transform(input)).toEqual(output)
   })

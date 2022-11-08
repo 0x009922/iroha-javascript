@@ -1,6 +1,7 @@
 {
   "name": "@iroha2/crypto-test-web",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
     "vite:dev": "vite --port 3030",
     "vite:build": "vite build",

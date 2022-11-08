@@ -1,0 +1,28 @@
+{
+  "mode": "pre",
+  "tag": "dvp",
+  "initialVersions": {
+    "@iroha2/client": "4.0.0",
+    "@iroha2/client-isomorphic-fetch": "0.2.0",
+    "@iroha2/client-isomorphic-ws": "0.2.0",
+    "@iroha2/crypto-core": "0.1.1",
+    "@iroha2/crypto-target-bundler": "0.4.0",
+    "@iroha2/crypto-target-node": "0.4.0",
+    "@iroha2/crypto-target-web": "0.4.0",
+    "@iroha2/data-model": "4.0.0",
+    "@iroha2/data-model-schema": "4.0.0",
+    "@iroha2/dev-iroha-bins": "0.0.0",
+    "@iroha2/docs-recipes": "0.0.3",
+    "@iroha2/i64-fixnum": "0.4.2",
+    "@iroha2/test-peer": "0.0.1",
+    "@iroha2/client-test-node": "0.0.0",
+    "@iroha2/client-test-web": "0.0.0",
+    "@iroha2/monorepo-crypto": "0.0.0",
+    "@iroha2/crypto-test-interfaces": "0.0.0",
+    "@iroha2/crypto-test-node": "0.0.0",
+    "@iroha2/crypto-test-web": "0.0.0"
+  },
+  "changesets": [
+    "tidy-fishes-fold"
+  ]
+}
